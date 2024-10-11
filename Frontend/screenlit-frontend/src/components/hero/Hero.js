@@ -15,7 +15,7 @@ const Hero = ({movies}) => {
                         const trailerLink = movie.trailerLink;
                         
                         function reviews(movieId){
-                            navigate(`/Reviews/${movieId}`);
+                            navigate(`/reviews/${movieId}`);
                         }
                         return (
                             <Paper key={movie.imdbId}>
@@ -32,7 +32,7 @@ const Hero = ({movies}) => {
                                                     <h2>{movie.title}</h2>
                                                 </div>
                                                 <div className="movie-buttons">
-                                                    <Link to={`/Trailer/${trailerLink.substring(trailerLink.length-11)}`} style={{ textDecoration: 'none' }}>
+                                                    <Link to={`/trailer/${trailerLink.substring(trailerLink.length-11)}`} style={{ textDecoration: 'none' }}>
                                                         <PlayButton className="play-button"> Play Trailer</PlayButton>
                                                     </Link>
                                                     <SeeReviewsButton onClick={() => reviews(movie.imdbId)}>See Reviews</SeeReviewsButton>

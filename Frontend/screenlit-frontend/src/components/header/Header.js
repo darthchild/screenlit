@@ -21,7 +21,7 @@ return (
         >
             <NavLink className="nav-link" to="/">Home</NavLink>
             <NavLink className="nav-link" to="/watchList">Watch List</NavLink>
-            <NavLink className="nav-link" to="/watchList">My Profile</NavLink>
+            <NavLink className="nav-link" to="/myProfile">My Profile</NavLink>
         </Nav>
         <Button className="me-2 login" style={{ backgroundColor: '#8e7900', borderColor: '#8e7900' }}>Login</Button>
         <Button className="register">Register</Button>
