@@ -26,7 +26,7 @@ INSERT INTO review (body, movie_id, rating) VALUES
 ('Family-friendly monster movie with a surprisingly local flair.', 4, 7.5),
 
 -- Black Adam
-('Dwayne Johnson\'s charisma elevates the otherwise formulaic plot.', 5, 6.8),
+('Dwayne Johnson''s charisma elevates the otherwise formulaic plot.', 5, 6.8),
 ('Spectacular action, underdeveloped characters!', 5, 7.0),
 ('Refreshing anti-hero perspective, if a bit blunt maybe', 5, 7.3),
 
@@ -38,7 +38,7 @@ INSERT INTO review (body, movie_id, rating) VALUES
 -- Roald Dahl's Matilda the Musical
 ('A Whimsical adaptation with catchy tunes.', 7, 8.3),
 ('Thompson shines as Trunchbull but suffers with pacing issues.', 7, 7.6),
-('Really captures the book\'s spirit beautifully.', 7, 8.8),
+('Really captures the book''s spirit beautifully.', 7, 8.8),
 
 -- Black Panther: Wakanda Forever
 ('Poignant tribute wrapped in superhero spectacle.', 8, 8.5),

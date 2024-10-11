@@ -1,4 +1,4 @@
-package com.ekagra.screenlit.exceptionHandling;
+package com.ekagra.screenlit.exceptions;
 
 import lombok.AllArgsConstructor;
 import lombok.Data;
@@ -8,6 +8,7 @@ import lombok.NoArgsConstructor;
 @NoArgsConstructor
 @AllArgsConstructor
 public class ErrorResponse {
+
     private String message;
     private int status;
 }

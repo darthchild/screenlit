@@ -1,33 +1,57 @@
 package com.ekagra.screenlit.services;
 
-import com.ekagra.screenlit.documents.Movie;
-import com.ekagra.screenlit.documents.Review;
+import com.ekagra.screenlit.entities.Movie;
+import com.ekagra.screenlit.exceptions.ErrorResponse;
 import com.ekagra.screenlit.repositories.MovieRepository;
 import com.ekagra.screenlit.repositories.ReviewRepository;
-import org.springframework.data.mongodb.core.MongoTemplate;
-import org.springframework.data.mongodb.core.query.Criteria;
-import org.springframework.data.mongodb.core.query.Update;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
+import com.ekagra.screenlit.entities.Review;
+
+import java.util.Optional;
 
 @Service
 public class ReviewService {
 
     private final ReviewRepository reviewRepository;
-    private final MongoTemplate mongoTemplate;
+    private final MovieRepository movieRepository;
 
-    public ReviewService(ReviewRepository reviewRepository, MovieRepository movieRepository, MongoTemplate mongoTemplate) {
+    public ReviewService(ReviewRepository reviewRepository, MovieRepository movieRepository) {
         this.reviewRepository = reviewRepository;
-        this.mongoTemplate = mongoTemplate;
+        this.movieRepository = movieRepository;
     }
 
-    public Review createReview(String imdbId, String reviewBody){
-        Review review = reviewRepository.insert(new Review(reviewBody));
+    public ResponseEntity<?> createReview(String imdbId, String reviewBody, Double rating) {
+        Optional<Movie> movieOptional = movieRepository.findMovieByImdbId(imdbId);
 
-        mongoTemplate.update(Movie.class)
-                .matching(Criteria.where("imdbId").is(imdbId))
-                .apply(new Update().push("reviewIds").value(review))
-                .first();
+        if (movieOptional.isPresent()) {
+            Movie movie = movieOptional.get();
 
-        return review;
+            // creating the review object
+            Review review = Review.builder()
+                    .body(reviewBody)
+                    .rating(rating)
+                    .movie(movie)
+                    .build();
+            Review savedReview = reviewRepository.save(review);
+
+            // Update the movie's reviews list (bi-directional relationship)
+            movie.getReviews().add(savedReview);
+            movieRepository.save(movie);
+
+            return new ResponseEntity<>(savedReview, HttpStatus.CREATED);
+        } else {
+
+            ErrorResponse errorResponse = new ErrorResponse(
+                    "Movie not found with imdb_id: " + imdbId,
+                    HttpStatus.NOT_FOUND.value()
+            );
+
+            return new ResponseEntity<>(errorResponse, HttpStatus.NOT_FOUND);
+        }
     }
+
+
 }
+

@@ -1,17 +1,44 @@
 package com.ekagra.screenlit.entities;
+
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
+import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
+import java.util.List;
 
 @Entity
-@Table(name = "movies")
 @Data
 @AllArgsConstructor
 @NoArgsConstructor
-public class MovieEntity {
+@Builder
+public class Movie {
     @Id
-    private long id;
-    private String name;
-    private Boolean isActive;
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private Long id;
+    private String imdbId;
+    private String title;
+    private String releaseDate;
+    private String trailerLink;
+    private String poster;
+    private String backdrop;
+
+    @OneToMany(
+            mappedBy = "movie",
+            cascade = CascadeType.ALL,
+            fetch = FetchType.LAZY
+    )
+    private List<Review> reviews;
+
+    @ManyToMany(
+            cascade = CascadeType.ALL,
+            fetch = FetchType.LAZY
+    )
+    @JoinTable(
+            name = "movie_genres",
+            joinColumns = @JoinColumn(name = "movie_id"),
+            inverseJoinColumns = @JoinColumn(name = "genre_id")
+    )
+    private List<Genre> genres;
 }
+

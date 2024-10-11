@@ -1,13 +1,11 @@
 package com.ekagra.screenlit.repositories;
 
-import com.ekagra.screenlit.documents.Movie;
-import com.ekagra.screenlit.documents.Review;
-import org.bson.types.ObjectId;
-import org.springframework.data.mongodb.repository.MongoRepository;
+import com.ekagra.screenlit.entities.Review;
+import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
 
 
 @Repository
-public interface ReviewRepository extends MongoRepository<Review, ObjectId> {
+public interface ReviewRepository extends JpaRepository<Review, Long> {
 
 }
