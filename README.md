@@ -91,7 +91,3 @@ Screenlit is a full-stack web application deployed on AWS. The application consi
 
 ### 4. Accessing the Application
 - Once the frontend and backend are deployed, the application will be accessible via the public IP of the frontend ECS service.
-
-## Conclusion
-
-This deployment utilizes AWS services like ECS, Fargate, ECR, and RDS to create a scalable, managed, and containerized full-stack application.
