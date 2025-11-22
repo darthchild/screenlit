@@ -66,10 +66,10 @@ public class AuthService {
                 new UsernamePasswordAuthenticationToken(dto.getUsername(), dto.getPassword())
         );
 
-        if(authentication.isAuthenticated())
+        if(authentication.isAuthenticated()){
             return jwtUtils.generateToken(dto.getUsername(),new HashMap<>());
-        else
-            return "Couldn't authenticate user!";
+        } else
+            return "Authentication failed, token not generated!";
     }
 
 }

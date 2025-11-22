@@ -12,7 +12,6 @@ import java.util.Optional;
 
 @RestController
 @RequestMapping("/api/v1/movies")
-@CrossOrigin(origins = "*")
 public class MovieController {
 
 
