@@ -3,12 +3,14 @@ package com.ekagra.screenlit;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 
+import java.util.TimeZone;
+
 @SpringBootApplication
 public class ScreenlitApplication {
 
 	public static void main(String[] args) {
-
-		SpringApplication.run(ScreenlitApplication.class, args);
+        TimeZone.setDefault(TimeZone.getTimeZone("Asia/Kolkata"));
+        SpringApplication.run(ScreenlitApplication.class, args);
 	}
 
 }

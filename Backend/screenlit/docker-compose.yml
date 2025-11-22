@@ -1,0 +1,17 @@
+services:
+    postgres:
+        image: postgres
+        container_name: screenlit_postgres
+        environment:
+            TZ: Asia/Kolkata
+            POSTGRES_USER: darthchild
+            POSTGRES_PASSWORD: changeinprod
+            POSTGRES_DB: screenlitDB
+        ports:
+            - "5000:5432"
+        volumes:
+            - screenlit_postgres_data:/var/lib/postgresql/data
+
+volumes:
+    screenlit_postgres_data:
+

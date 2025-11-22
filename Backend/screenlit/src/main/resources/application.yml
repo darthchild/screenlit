@@ -1,8 +1,8 @@
 spring:
     datasource:
-        url: ${DB_URL}
-        username: ${DB_USERNAME}
-        password: ${DB_PASSWORD}
+        url: jdbc:postgresql://localhost:5000/screenlitDB
+        username: darthchild
+        password: changeinprod
         driver-class-name: org.postgresql.Driver
     flyway:
         enabled: true
@@ -13,8 +13,7 @@ spring:
             ddl-auto: none
         properties:
             hibernate:
-                transaction:
-                    coordinator_class: jdbc
+                transaction.coordinator_class: jdbc
     sql:
         init:
             mode: never
