@@ -1,8 +1,8 @@
-package com.ekagra.screenlit.controllers;
+package com.ekagra.screenlit.controller;
 
-import com.ekagra.screenlit.entities.Movie;
-import com.ekagra.screenlit.entities.Review;
-import com.ekagra.screenlit.services.MovieService;
+import com.ekagra.screenlit.model.Movie;
+import com.ekagra.screenlit.model.Review;
+import com.ekagra.screenlit.service.MovieService;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;

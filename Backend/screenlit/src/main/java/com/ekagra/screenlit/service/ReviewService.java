@@ -1,13 +1,13 @@
-package com.ekagra.screenlit.services;
+package com.ekagra.screenlit.service;
 
-import com.ekagra.screenlit.entities.Movie;
+import com.ekagra.screenlit.model.Movie;
 import com.ekagra.screenlit.exceptions.ErrorResponse;
-import com.ekagra.screenlit.repositories.MovieRepository;
-import com.ekagra.screenlit.repositories.ReviewRepository;
+import com.ekagra.screenlit.repository.MovieRepository;
+import com.ekagra.screenlit.repository.ReviewRepository;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
-import com.ekagra.screenlit.entities.Review;
+import com.ekagra.screenlit.model.Review;
 
 import java.util.Optional;
 

@@ -1,7 +1,7 @@
-package com.ekagra.screenlit.controllers;
+package com.ekagra.screenlit.controller;
 
-import com.ekagra.screenlit.dto.ReviewRequestDTO;
-import com.ekagra.screenlit.services.ReviewService;
+import com.ekagra.screenlit.model.ReviewRequestDTO;
+import com.ekagra.screenlit.service.ReviewService;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 

@@ -1,9 +1,8 @@
-package com.ekagra.screenlit.services;
+package com.ekagra.screenlit.service;
 
-import com.ekagra.screenlit.entities.Movie;
-import com.ekagra.screenlit.entities.Review;
-import com.ekagra.screenlit.repositories.MovieRepository;
-import jakarta.persistence.Table;
+import com.ekagra.screenlit.model.Movie;
+import com.ekagra.screenlit.model.Review;
+import com.ekagra.screenlit.repository.MovieRepository;
 import org.springframework.stereotype.Service;
 import java.util.List;
 import java.util.Optional;

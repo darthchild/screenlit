@@ -1,4 +1,4 @@
-package com.ekagra.screenlit.dto;
+package com.ekagra.screenlit.model;
 
 import lombok.AllArgsConstructor;
 import lombok.Data;

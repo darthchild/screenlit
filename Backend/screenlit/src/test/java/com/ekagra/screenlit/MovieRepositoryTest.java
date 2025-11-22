@@ -1,9 +1,9 @@
 package com.ekagra.screenlit;
 
-import com.ekagra.screenlit.entities.Genre;
-import com.ekagra.screenlit.entities.Movie;
-import com.ekagra.screenlit.entities.Review;
-import com.ekagra.screenlit.repositories.MovieRepository;
+import com.ekagra.screenlit.model.Genre;
+import com.ekagra.screenlit.model.Movie;
+import com.ekagra.screenlit.model.Review;
+import com.ekagra.screenlit.repository.MovieRepository;
 import jakarta.transaction.Transactional;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;

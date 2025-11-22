@@ -1,6 +1,5 @@
-package com.ekagra.screenlit.configurations;
+package com.ekagra.screenlit.config;
 
-import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 
 @Configuration

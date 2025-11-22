@@ -1,4 +1,4 @@
-package com.ekagra.screenlit.entities;
+package com.ekagra.screenlit.model;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.*;

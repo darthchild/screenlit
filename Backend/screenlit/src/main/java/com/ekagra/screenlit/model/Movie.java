@@ -1,4 +1,4 @@
-package com.ekagra.screenlit.entities;
+package com.ekagra.screenlit.model;
 
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;

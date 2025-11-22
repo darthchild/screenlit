@@ -1,6 +1,6 @@
-package com.ekagra.screenlit.repositories;
+package com.ekagra.screenlit.repository;
 
-import com.ekagra.screenlit.entities.Review;
+import com.ekagra.screenlit.model.Review;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
 
