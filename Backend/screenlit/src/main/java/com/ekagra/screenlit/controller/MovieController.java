@@ -14,7 +14,6 @@ import java.util.Optional;
 @RequestMapping("/api/v1/movies")
 public class MovieController {
 
-
     private final MovieService movieService;
 
     public MovieController(MovieService movieService) {
@@ -23,17 +22,17 @@ public class MovieController {
 
     @GetMapping
     public ResponseEntity<List<Movie>> getAllMovies(){
-        return new ResponseEntity<List<Movie>>(movieService.allMovies(), HttpStatus.OK);
+        return ResponseEntity.ok(movieService.allMovies());
     }
 
     @GetMapping("/allReviews/{imdbId}")
     public ResponseEntity<List<Review>> getAllReviews(@PathVariable String imdbId){
-        return new ResponseEntity<>(movieService.allReviewsOfMovie(imdbId), HttpStatus.OK);
+        return ResponseEntity.ok(movieService.allReviewsOfMovie(imdbId));
     }
 
     @GetMapping("/{imdbId}")
-    public ResponseEntity<Optional<Movie>> getSingleMovie(@PathVariable String imdbId){
-        return new ResponseEntity<>(movieService.singleMovie(imdbId), HttpStatus.OK);
+    public ResponseEntity<Movie> getSingleMovie(@PathVariable String imdbId){
+        return ResponseEntity.ok(movieService.singleMovie(imdbId));
     }
 
     @GetMapping("/admin")

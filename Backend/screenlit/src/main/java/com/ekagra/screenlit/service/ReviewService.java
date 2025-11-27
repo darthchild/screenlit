@@ -1,7 +1,8 @@
 package com.ekagra.screenlit.service;
 
+import com.ekagra.screenlit.exception.ResourceNotFoundException;
 import com.ekagra.screenlit.model.Movie;
-import com.ekagra.screenlit.exceptions.ErrorResponse;
+import com.ekagra.screenlit.exception.ErrorResponse;
 import com.ekagra.screenlit.repository.MovieRepository;
 import com.ekagra.screenlit.repository.ReviewRepository;
 import org.springframework.http.HttpStatus;
@@ -22,7 +23,7 @@ public class ReviewService {
         this.movieRepository = movieRepository;
     }
 
-    public ResponseEntity<?> createReview(String imdbId, String reviewBody, Double rating) {
+    public Review createReview(String imdbId, String reviewBody, Double rating) {
         Optional<Movie> movieOptional = movieRepository.findMovieByImdbId(imdbId);
 
         if (movieOptional.isPresent()) {
@@ -40,15 +41,9 @@ public class ReviewService {
             movie.getReviews().add(savedReview);
             movieRepository.save(movie);
 
-            return new ResponseEntity<>(savedReview, HttpStatus.CREATED);
+            return savedReview;
         } else {
-
-            ErrorResponse errorResponse = new ErrorResponse(
-                    "Movie not found with imdb_id: " + imdbId,
-                    HttpStatus.NOT_FOUND.value()
-            );
-
-            return new ResponseEntity<>(errorResponse, HttpStatus.NOT_FOUND);
+            throw new ResourceNotFoundException("Movie not found with imdb_id: " + imdbId);
         }
     }
 

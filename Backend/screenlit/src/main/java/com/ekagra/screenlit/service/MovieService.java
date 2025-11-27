@@ -1,5 +1,6 @@
 package com.ekagra.screenlit.service;
 
+import com.ekagra.screenlit.exception.ResourceNotFoundException;
 import com.ekagra.screenlit.model.Movie;
 import com.ekagra.screenlit.model.Review;
 import com.ekagra.screenlit.repository.MovieRepository;
@@ -20,20 +21,16 @@ public class MovieService {
         return movieRepository.findAll();
     }
 
-
-    public Optional<Movie> singleMovie(String imdbId) {
-        return movieRepository.findMovieByImdbId(imdbId);
+    public Movie singleMovie(String imdbId) {
+        return movieRepository.findMovieByImdbId(imdbId)
+                .orElseThrow(() -> new ResourceNotFoundException(
+                        "Movie not found with imdb_id: " + imdbId));
     }
 
     public List<Review> allReviewsOfMovie(String imdbId){
-
-        Optional<Movie> movieOptional = movieRepository.findMovieByImdbId(imdbId);
-
-        if (movieOptional.isPresent()) {
-            Movie movie = movieOptional.get();
-            return movie.getReviews();
-        } else {
-            throw new RuntimeException("Movie not found with imdb_id: " + imdbId);
-        }
+        Movie movie = movieRepository.findMovieByImdbId(imdbId)
+                .orElseThrow(() -> new ResourceNotFoundException(
+                        "Movie not found with imdb_id: " + imdbId));
+        return movie.getReviews();
     }
 }
