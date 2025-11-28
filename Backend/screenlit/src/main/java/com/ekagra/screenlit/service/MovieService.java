@@ -24,13 +24,15 @@ public class MovieService {
     public Movie singleMovie(String imdbId) {
         return movieRepository.findMovieByImdbId(imdbId)
                 .orElseThrow(() -> new ResourceNotFoundException(
-                        "Movie not found with imdb_id: " + imdbId));
+                        "Movie not found with imdb_id: " + imdbId)
+                );
     }
 
     public List<Review> allReviewsOfMovie(String imdbId){
         Movie movie = movieRepository.findMovieByImdbId(imdbId)
                 .orElseThrow(() -> new ResourceNotFoundException(
-                        "Movie not found with imdb_id: " + imdbId));
+                        "Movie not found with imdb_id: " + imdbId)
+                );
         return movie.getReviews();
     }
 }
