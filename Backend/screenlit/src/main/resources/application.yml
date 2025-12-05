@@ -1,9 +1,8 @@
 spring:
     datasource:
-        url: jdbc:postgresql://localhost:5000/screenlitDB
-        username: darthchild
-        password: changeinprod
-        driver-class-name: org.postgresql.Driver
+        url: ${DB_URL}
+        username: ${DB_USERNAME}
+        password: ${DB_PASSWORD}
     flyway:
         enabled: true
         locations: classpath:db/migration
@@ -20,6 +19,8 @@ spring:
 jwt:
   secret: bmVhcmx5cGlja21vc3Rwb3NzaWJsZWVzdGFibGlzaHNob3J0ZXJwZXJzb25jbGVhcmx5cmVhcmluZmx1ZW5jZWFjdHNvZnRub3RyYWNlaXRzZWxmZnJlZWRvbW1vdG9yYXZhaWxhYmxlYmVmb3JlZ2FtZWFwYXJ0aGVsbG9zd2luZ2Nvd2Rlc2NyaWJlYWxsZ292ZXJubWVudHN1YnN0YW5jZXF1aWV0b3Bwb3NpdGV3ZXN0ZXJuZmFjdGtlZXBtb3ZpZWFjcmVzbWVtb3J5ZW5naW5lZXJhbnl3YXludW1lcmFsbW9ua2V5Y2VudHJhbGNvdWxkcmVhbGl6ZW9iag==
   expirationMs: 86400000  # token expiration time in milliseconds
+
+#ACTUATOR
 management:
   endpoints:
     web.exposure.include: httpexchanges,health,info,metrics,trace
