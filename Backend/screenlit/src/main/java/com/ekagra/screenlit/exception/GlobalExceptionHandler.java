@@ -3,14 +3,29 @@ package com.ekagra.screenlit.exception;
 import jakarta.servlet.http.HttpServletRequest;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.MethodArgumentNotValidException;
 import org.springframework.web.bind.annotation.ExceptionHandler;
 import org.springframework.web.bind.annotation.RestControllerAdvice;
 import org.springframework.web.server.ResponseStatusException;
 
 import java.time.Instant;
+import java.util.Objects;
 
 @RestControllerAdvice
 public class GlobalExceptionHandler {
+
+    @ExceptionHandler(MethodArgumentNotValidException.class)
+    public ResponseEntity<ErrorResponse> handleMethodArgumentNotValid(MethodArgumentNotValidException ex, HttpServletRequest request){
+        String message = "INVALID_REQUEST: " + Objects.requireNonNull(ex.getBindingResult().getFieldError()).getDefaultMessage();
+
+        ErrorResponse body = new ErrorResponse(
+                message,
+                HttpStatus.BAD_REQUEST.value(),
+                request.getRequestURI(),
+                Instant.now()
+        );
+        return new ResponseEntity<>(body, HttpStatus.BAD_REQUEST);
+    }
 
     @ExceptionHandler(ResourceNotFoundException.class)
     public ResponseEntity<ErrorResponse> handleResourceNotFound(ResourceNotFoundException ex, HttpServletRequest request) {
