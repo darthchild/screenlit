@@ -2,29 +2,28 @@ package com.ekagra.screenlit.model;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.*;
-import lombok.AllArgsConstructor;
-import lombok.Builder;
-import lombok.Data;
-import lombok.NoArgsConstructor;
+import lombok.*;
 
-    @Entity
-    @Data
-    @AllArgsConstructor
-    @NoArgsConstructor
-    @Builder
-    public class Review {
-        @Id
-        @GeneratedValue(strategy = GenerationType.IDENTITY)
-        private Long id;
-        private String body;
-        private Double rating;
+@Entity
+@Getter
+@Builder
+@AllArgsConstructor
+@NoArgsConstructor
+public class Review {
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private Long id;
 
-        @ManyToOne
-        @JoinColumn(name = "movie_id")
-        @JsonIgnore
-        private Movie movie;
+    private String body;
 
-        public Review(String body) {
-            this.body = body;
-        }
+    private Double rating;
+
+    @ManyToOne
+    @JoinColumn(name = "movie_id")
+    @JsonIgnore
+    private Movie movie;
+
+    public Review(String body) {
+        this.body = body;
     }
+}

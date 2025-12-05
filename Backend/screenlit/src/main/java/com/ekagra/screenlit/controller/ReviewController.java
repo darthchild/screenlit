@@ -1,8 +1,9 @@
 package com.ekagra.screenlit.controller;
 
 import com.ekagra.screenlit.model.Review;
-import com.ekagra.screenlit.model.ReviewRequestDTO;
+import com.ekagra.screenlit.model.ReviewRequestDto;
 import com.ekagra.screenlit.service.ReviewService;
+import jakarta.validation.Valid;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
@@ -17,11 +18,11 @@ public class ReviewController {
     }
 
     @PostMapping
-    public ResponseEntity<Review> createReview(@RequestBody ReviewRequestDTO reviewRequest){
+    public ResponseEntity<Review> createReview(@Valid @RequestBody ReviewRequestDto reviewRequest){
          Review savedReview = reviewService.createReview(
-                reviewRequest.getImdbId(),
-                reviewRequest.getReviewBody(),
-                reviewRequest.getRating()
+                reviewRequest.imdbId(),
+                reviewRequest.reviewBody(),
+                reviewRequest.rating()
          );
         return ResponseEntity.ok(savedReview);
     }
